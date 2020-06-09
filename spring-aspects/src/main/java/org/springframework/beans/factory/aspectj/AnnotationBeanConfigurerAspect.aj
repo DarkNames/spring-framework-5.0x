@@ -47,7 +47,7 @@ import org.springframework.beans.factory.wiring.BeanConfigurerSupport;
 public aspect AnnotationBeanConfigurerAspect extends AbstractInterfaceDrivenDependencyInjectionAspect
 		implements BeanFactoryAware, InitializingBean, DisposableBean {
 
-	private BeanConfigurerSupport beanConfigurerSupport = new BeanConfigurerSupport();
+	private final BeanConfigurerSupport beanConfigurerSupport = new BeanConfigurerSupport();
 
 
 	public void setBeanFactory(BeanFactory beanFactory) {
