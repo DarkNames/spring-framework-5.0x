@@ -43,11 +43,13 @@ public abstract aspect AbstractDependencyInjectionAspect {
 	/**
 	 * Select the most-specific initialization join point
 	 * (most concrete class) for the initialization of an instance.
-	 这里因为==号无法编译导致报错，暂时屏蔽
+	 * 这里因为==号无法编译导致报错，暂时屏蔽
+	 * 还不能屏蔽，会报错
+	 */
 	@CodeGenerationHint(ifNameSuffix="6f1")
 	public pointcut mostSpecificSubTypeConstruction() :
-			if (thisJoinPoint.getSignature().getDeclaringType() == thisJoinPoint.getThis().getClass());
-	 */
+			if (thisJoinPoint.getSignature().getDeclaringType()==thisJoinPoint.getThis().getClass());
+
 	/**
 	 * Select join points in beans to be configured prior to construction?
 	 * By default, use post-construction injection matching the default in the Configurable annotation.
