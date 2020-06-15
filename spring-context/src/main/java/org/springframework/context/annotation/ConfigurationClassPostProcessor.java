@@ -261,7 +261,8 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	 */
 	public void processConfigBeanDefinitions(BeanDefinitionRegistry registry) {
 
-		/** app提供的bean
+		/**
+		 * app提供的bean
 		 * 在判断添加了@Configuration后添加
 		 * 并转换为set集合 candidates = new LinkedHashSet<>(configCandidates);
 		 * //扫描包
@@ -269,8 +270,9 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		 */
 		List<BeanDefinitionHolder> configCandidates = new ArrayList<>();
 
-		/**获取容器中Bean的名字 这里的registry就是DefaultListableBeanFacroty
+		/**获取容器中Bean的名字 这里的registry就是DefaultListableBeanFactory
 		 * List<String> beanDefinitionNames,这里获取的就是beanFactory中维护的beanDefinitionNames
+		 * 正常应该有7个数据，6个spring自己new的bd，还有一个是javaConfig
 		 */
 		String[] candidateNames = registry.getBeanDefinitionNames();
 

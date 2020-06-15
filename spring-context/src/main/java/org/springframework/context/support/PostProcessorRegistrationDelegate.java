@@ -85,6 +85,10 @@ final class PostProcessorRegistrationDelegate {
 			List<BeanDefinitionRegistryPostProcessor> currentRegistryProcessors = new ArrayList<>();
 
 			// First, invoke the BeanDefinitionRegistryPostProcessors that implement PriorityOrdered.
+			/**
+			 * BeanDefinitionRegistryPostProcessor等于BeanFactoryPostProcessor
+			 * getBeanNamesForType 根据bean类型获取bean的名字
+			 */
 			String[] postProcessorNames =
 					beanFactory.getBeanNamesForType(BeanDefinitionRegistryPostProcessor.class, true, false);
 			/**
@@ -104,11 +108,16 @@ final class PostProcessorRegistrationDelegate {
 					processedBeans.add(ppName);
 				}
 			}
+			// 排序不重要，况且currentRegistryPostProcessors只有一个数据
 			sortPostProcessors(currentRegistryProcessors, beanFactory);
+			// 合并list，不重要（为什么要合并，因为还有自己的定义的）
 			registryProcessors.addAll(currentRegistryProcessors);
-			/** currentRegistryProcessor 里边存放的只有ConfigurationClassPostProcessor.class */
+			/** currentRegistryProcessor 里边存放的只有ConfigurationClassPostProcessor.class
+			 * step into
+			 */
 			invokeBeanDefinitionRegistryPostProcessors(currentRegistryProcessors, registry);
 
+			//currentRegistryProcessors只是一个临时变量，故而需要清理
 			currentRegistryProcessors.clear();
 
 			// Next, invoke the BeanDefinitionRegistryPostProcessors that implement Ordered.
@@ -293,6 +302,7 @@ final class PostProcessorRegistrationDelegate {
 			Collection<? extends BeanDefinitionRegistryPostProcessor> postProcessors, BeanDefinitionRegistry registry) {
 
 		for (BeanDefinitionRegistryPostProcessor postProcessor : postProcessors) {
+			/** 这里的PostProcessor 就是ConfigurationClassPostProcessor  step into */
 			postProcessor.postProcessBeanDefinitionRegistry(registry);
 		}
 	}

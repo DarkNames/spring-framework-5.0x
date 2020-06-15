@@ -97,6 +97,10 @@ abstract class ConfigurationClassUtils {
 		else if (beanDef instanceof AbstractBeanDefinition && ((AbstractBeanDefinition) beanDef).hasBeanClass()) {
 			// Check already loaded Class if present...
 			// since we possibly can't even load the class file for this Class.
+			/**
+			 * 如果BeanDefinition是AbstractBeanDefinition的实例，并且BeanDefinition有 beanClass的属性存在
+			 * 则实例化StandardAnnotationMetadata
+			 */
 			Class<?> beanClass = ((AbstractBeanDefinition) beanDef).getBeanClass();
 			metadata = new StandardAnnotationMetadata(beanClass, true);
 		}

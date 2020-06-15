@@ -167,7 +167,7 @@ class ConfigurationClassParser {
 			BeanDefinition bd = holder.getBeanDefinition();
 			try {
 				if (bd instanceof AnnotatedBeanDefinition) {
-					/** 扫描出来的类中是否还有Configuration  可以进入到parse当中查看  */
+					/** 扫描出来的类中是否还有Configuration  可以进入到parse当中查看  step into */
 					//step into
 					parse(((AnnotatedBeanDefinition) bd).getMetadata(), holder.getBeanName());
 				}
@@ -324,7 +324,7 @@ class ConfigurationClassParser {
 				!this.conditionEvaluator.shouldSkip(sourceClass.getMetadata(), ConfigurationPhase.REGISTER_BEAN)) {
 			for (AnnotationAttributes componentScan : componentScans) {
 				// The config class is annotated with @ComponentScan -> perform the scan immediately
-				/**解析扫描的一些基本信息，比如是否过滤，比如是否加入新的包。。。。。 可以点进方法去看*/
+				/**解析扫描的一些基本信息，比如是否过滤，比如是否加入新的包。。。。。 可以点进方法去看   step into */
 				//step into
 				Set<BeanDefinitionHolder> scannedBeanDefinitions =
 						this.componentScanParser.parse(componentScan, sourceClass.getMetadata().getClassName());
