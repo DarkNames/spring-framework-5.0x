@@ -181,6 +181,10 @@ public class AnnotationConfigUtils {
 			beanDefs.add(registerPostProcessor(registry, def, CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME));
 		}
 
+			/**
+			 * AutowiredAnnotationBeanPostProcessor 实现了 MergedBeanDefinitionPostProcessor 接口
+			 * MergedBeanDefinitionPostProcessor 接口最终实现了 BeanPostProcessor后置处理器扩展点
+			 */
 		if (!registry.containsBeanDefinition(AUTOWIRED_ANNOTATION_PROCESSOR_BEAN_NAME)) {
 			RootBeanDefinition def = new RootBeanDefinition(AutowiredAnnotationBeanPostProcessor.class);
 			def.setSource(source);

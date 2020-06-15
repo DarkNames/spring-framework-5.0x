@@ -550,7 +550,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				/**
 				 * 设置自定义的DefaultListableBeanFactory
 				 * 在Spring环境中执行已经被注册的 factory Processor
-				 * 设置自定义的ProcessBeanFactory
+				 * 设置执行自定义的ProcessBeanFactory 和Spring内部自己定义的 也就是ConfigurationClassPostProcessor
 				 */
 				invokeBeanFactoryPostProcessors(beanFactory);
 
@@ -693,7 +693,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		 * 2、添加bean表达式解析器，为了能够让我们的BeanFactory去解析bean表达式
 		 */
 		beanFactory.setBeanExpressionResolver(new StandardBeanExpressionResolver(beanFactory.getBeanClassLoader()));
-		// 注册一个属性编辑器
+		// 注册一个属性编辑器 <property red="dao">
 		beanFactory.addPropertyEditorRegistrar(new ResourceEditorRegistrar(this, getEnvironment()));
 
 		// Configure the bean factory with context callbacks.
@@ -734,6 +734,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		}
 
 		// Register default environment beans.
+		/**
+		 * 意思是如果自定义的Bean中没有名为"systemProperties"和"systemEnvironment"的Bena
+		 * 则注册两个bean，key为"systemProperties"和"systemEnvironment",Value为map
+		 * 这两个Bean就是一些系统配置和系统环境信息
+		 */
 		if (!beanFactory.containsLocalBean(ENVIRONMENT_BEAN_NAME)) {
 			beanFactory.registerSingleton(ENVIRONMENT_BEAN_NAME, getEnvironment());
 		}
