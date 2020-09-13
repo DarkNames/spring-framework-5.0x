@@ -68,7 +68,7 @@ public class AnnotatedBeanDefinitionReader {
 	 */
 	/**
 	 * 这里的AnnotatedBeanDefinitionReader是通过在AnnotationConfigApplicationContext的构造方法中传递进来的this
-	 * this指的就是AnnotationConfigApplicationContext，它集成了BeanDefinitionRegistry
+	 * this指的就是AnnotationConfigApplicationContext，它继承了BeanDefinitionRegistry
 	 * @param registry
 	 */
 	public AnnotatedBeanDefinitionReader(BeanDefinitionRegistry registry) {
